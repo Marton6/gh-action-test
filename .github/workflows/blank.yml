@@ -17,4 +17,5 @@ jobs:
         uses: secrethub/actions/env-export@v0.2.1
         env:
             SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB }}
-            MY_TOKEN: secrethub://orga/passwords/my/token
+            MY_TOKEN: secrethub://marton/test/aaa
+      - run: echo $MY_TOKEN
