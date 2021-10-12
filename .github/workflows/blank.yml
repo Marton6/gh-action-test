@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: test
     steps:
       - name: Load Secrets
         uses: secrethub/actions/env-export@v0.2.1
