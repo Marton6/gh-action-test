@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - uses: actions/checkout@v3 # <========== uses v3
+      - uses: actions/checkout@v4 # <========== uses v3
 
       - name: Load secret
         uses: 1password/load-secrets-action@v2
