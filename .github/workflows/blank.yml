@@ -5,18 +5,25 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
   workflow_dispatch:
 
 jobs:
-  build:
+  hello-world:
     runs-on: ubuntu-latest
     environment: test
     steps:
-      - name: Load Secrets
-        uses: secrethub/actions/env-export@v0.2.0
+      - uses: actions/checkout@v3 # <========== uses v3
+
+      - name: Load secret
+        uses: 1password/load-secrets-action@v2
+        with:
+          # Export loaded secrets as environment variables
+          export-env: true
         env:
-            SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB }}
-            MY_TOKEN: secrethub://marton/test/aaa
-      - run: echo $MY_TOKEN
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          SECRET: op://app-cicd/hello-world/secret
+
+      - name: Print masked secret
+        run: 'echo "Secret: $SECRET"'
